@@ -17,3 +17,7 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 import 'bootstrap'
+
+const importAll = r => r.keys().forEach(r);
+const context = require.context(".", true, /\.js$/);
+importAll(context);

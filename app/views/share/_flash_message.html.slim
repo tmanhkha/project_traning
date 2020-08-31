@@ -1,0 +1,8 @@
+- if flash[:notice]
+  .notification.alert.alert-success.alert-dismissible.fade.show[role="alert"]
+    p
+      = notice
+- if flash[:alert]
+  .notification.alert.alert-danger.alert-dismissible.fade.show[role="alert"]
+    p
+      = alert
