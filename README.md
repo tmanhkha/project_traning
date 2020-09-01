@@ -1,24 +1,5 @@
-# README
+### Google sheet product features
+https://docs.google.com/spreadsheets/d/1Xmv3EeWYzn-oyq7XuGdRnsqfe0AmLJZs2u2YK4sc1SI/edit?usp=sharing
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Wireframe
+https://drive.google.com/file/d/1oFg4Lyj_wIxdESnVTJAT3GxbMar6oDvf/view?usp=sharing
