@@ -1,0 +1,10 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  = link_to 'Logo', root_path, class: "navbar-brand"
+  button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"]
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      input.form-control.mr-sm-2.w-100[type="search" placeholder="Search" aria-label="Search"]
+    .form-inline.my-2.my-lg-0
+      = link_to "Sign In", new_user_session_path, class: 'btn btn-success mr-3'
+      = link_to "Sign Up", new_user_registration_path, class: 'btn btn-outline-success'
