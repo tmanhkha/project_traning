@@ -1,0 +1,29 @@
+= form_for(@user) do |f|
+  - if @user.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@user.errors.count, "error")
+        |  prohibited this role from being saved:
+      ul
+        - @user.errors.full_messages.each do |message|
+          li
+            = message
+  .form-group
+    = f.label :email
+    br
+    = f.email_field :email, class: "form-control"
+  .form-group
+  - if current_user.admin?
+    .form-group
+      = f.label :user_role, "Role"
+      = f.fields_for :user_role do |fa|
+        = fa.collection_select :role_id, Role.all, :id, :name, {}, { class: "form-control" }
+  .form-group
+    = f.label :password
+    br
+    = f.password_field :password, autocomplete: "off", class: "form-control"
+  .form-group
+    = f.label :password_confirmation
+    br
+    = f.password_field :password_confirmation, autocomplete: "off", class: "form-control"
+  = f.submit class: "btn btn-primary"

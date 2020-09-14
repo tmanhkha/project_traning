@@ -1,0 +1,23 @@
+  .row
+    .col-12
+      .card
+        .card-body
+          h4.header-title
+            | All users
+
+          table.basic-datatable.table.dt-responsive
+            thead
+              tr
+                th Email
+                th Role
+                th Actions
+            tbody
+              - @users.each do |user|
+                tr
+                  td
+                    = user.email
+                  td
+                    = user.role.name
+                  td.table-action
+                    = link_to 'Edit', edit_user_path(user)
+                    = link_to "Destroy", user_path(user), method: :delete, data: { confirm: 'Are you sure?' }
