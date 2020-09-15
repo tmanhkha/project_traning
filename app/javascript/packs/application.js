@@ -17,3 +17,24 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 import 'bootstrap'
+
+// Import all javascript file
+const importAll = r => r.keys().forEach(r);
+const context = require.context(".", true, /\.js$/);
+importAll(context);
+
+require("jquery");
+require("jquery-slimscroll");
+require("daterangepicker");
+require("metismenu");
+require("select2");
+
+import "css/icons.min.css";
+import "css/app.min.css";
+import "css/dataTables.bootstrap4.scss";
+
+document.addEventListener("turbolinks:load", () => {
+  require("js/app.min");
+  require("js/jquery.dataTables");
+  require("js/datatable");
+});
