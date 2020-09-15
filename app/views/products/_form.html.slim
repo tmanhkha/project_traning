@@ -1,0 +1,28 @@
+= form_for(@product) do |f|
+  - if @product.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@product.errors.count, "error")
+        |  prohibited this role from being saved:
+      ul
+        - @product.errors.full_messages.each do |message|
+          li
+            = message
+  .form-group
+    = f.label "Manufacturer"
+    br
+    = select_tag :manufacturer_id, options_from_collection_for_select(Manufacturer.all, 'id', 'name'), { class: "form-control select2-data-memories product-select-manufacturer", include_blank: true }
+
+  .form-group
+    = f.label "Model"
+    br
+    = select_tag :model_id, options_from_collection_for_select(Model.all, 'id', 'name'), { class: "form-control select2-data-memories product-select-model", include_blank: true }
+  .form-group
+    = f.label "Data Memory"
+    br
+    = select_tag :data_memory_id, options_from_collection_for_select(DataMemory.all, 'id', 'name'), { class: "form-control select2-data-memories product-select-data-memory", include_blank: true }
+  .form-group
+    = f.label "Price"
+    br
+    = f.number_field :price, class: "form-control", step: 0.5
+  = f.submit "Submit", class: "btn btn-primary"

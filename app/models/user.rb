@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_one :user_role, dependent: :destroy
   has_one :role, through: :user_role
 
+  has_many :products, dependent: :destroy
+
   accepts_nested_attributes_for :user_role, allow_destroy: true
 
   def admin?
