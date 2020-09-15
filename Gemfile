@@ -18,8 +18,10 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv-rails'
   gem 'factory_bot_rails', '~> 6.1'
+  gem 'pundit-matchers', '~> 1.6.0'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 4.0', '>= 4.0.1'
+  gem 'shoulda-matchers', '~> 4.0'
 end
 
 group :development do
@@ -37,6 +39,7 @@ group :test do
 end
 
 gem 'devise', '~> 4.7', '>= 4.7.2'
+gem 'pundit'
 gem 'rubocop-rails'
 gem 'slim-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

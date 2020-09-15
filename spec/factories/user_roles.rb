@@ -1,3 +1,5 @@
+# frozen_string_literal: false
+
 FactoryBot.define do
   factory :user_role do
     user { nil }

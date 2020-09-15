@@ -1,9 +1,13 @@
+.container
   .row
     .col-12
       .card
         .card-body
-          h4.header-title
-            | All users
+          .table-header.d-flex.justify-content-between
+            h4.header-title
+              | All users
+            .header-new-user
+              = link_to "New user", new_user_path, class: "btn btn-primary"
 
           table.basic-datatable.table.dt-responsive
             thead
@@ -19,5 +23,5 @@
                   td
                     = user.role.name
                   td.table-action
-                    = link_to 'Edit', edit_user_path(user)
-                    = link_to "Destroy", user_path(user), method: :delete, data: { confirm: 'Are you sure?' }
+                    = link_to 'Edit', edit_user_path(user), class: "btn btn-primary mr-3"
+                    = link_to "Destroy", user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"

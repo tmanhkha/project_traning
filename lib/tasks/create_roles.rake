@@ -1,3 +1,5 @@
+# frozen_string_literal: false
+
 namespace :db do
   task create_roles: :environment do
     Role.create(name: 'Admin', level: 1)

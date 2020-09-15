@@ -36,6 +36,5 @@ import "css/dataTables.bootstrap4.scss";
 document.addEventListener("turbolinks:load", () => {
   require("js/app.min");
   require("js/jquery.dataTables");
-  // require("hyper/js/dataTables.bootstrap4");
   require("js/datatable");
 });
