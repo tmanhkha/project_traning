@@ -38,6 +38,7 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'cocoon'
 gem 'devise', '~> 4.7', '>= 4.7.2'
 gem 'pundit'
 gem 'rubocop-rails'

@@ -28,6 +28,7 @@ require("jquery-slimscroll");
 require("daterangepicker");
 require("metismenu");
 require("select2");
+require("@nathanvda/cocoon")
 
 import "css/icons.min.css";
 import "css/app.min.css";
@@ -38,3 +39,7 @@ document.addEventListener("turbolinks:load", () => {
   require("js/jquery.dataTables");
   require("js/datatable");
 });
+
+$(document).on("ready turbolinks:load", () => {
+  $(".select2-data-memories").select2()
+})

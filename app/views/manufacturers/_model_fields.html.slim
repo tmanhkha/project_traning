@@ -1,0 +1,7 @@
+.nested-fields.row.manufacturer-nested-model-form
+  .col-md-8
+    .field.row
+      = f.label "Name model"
+      = f.text_field :name, class: "form-control"
+  .col-md-4.align-self-end
+    = link_to_remove_association "Remove", f, class: "btn btn-danger"

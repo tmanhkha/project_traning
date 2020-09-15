@@ -1,0 +1,19 @@
+= form_for(@model) do |f|
+  - if @model.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@model.errors.count, "error")
+        |  prohibited this role from being saved:
+      ul
+        - @model.errors.full_messages.each do |message|
+          li
+            = message
+  .form-group
+    = f.label :name
+    br
+    = f.text_field :name, class: "form-control", disabled: true
+  .form-group
+    = f.label "Data Memories"
+    br
+    = f.collection_select :data_memory_ids, DataMemory.all, 'id', 'name', { prompt: "Select data memories" }, { include_blank: false, class: "form-control select2-data-memories", multiple: true }
+  = f.submit "Submit", class: "btn btn-primary"

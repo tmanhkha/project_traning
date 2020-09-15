@@ -1,0 +1,10 @@
+.container.mt-5
+  .row.justify-content-md-center
+    .col-md-8.border.authenticate-border.p-5
+      .card
+        h5.card-header
+          | Model Detail
+        .card-body
+          p.card-text
+            = @model.name
+          = link_to "Back", models_path, class: "btn btn-primary"
