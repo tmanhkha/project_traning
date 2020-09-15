@@ -1,15 +1,16 @@
-p#notice = notice
-
-p
-  strong User:
-  = @product.user
-p
-  strong Data memory model:
-  = @product.data_memory_model
-p
-  strong Price:
-  = @product.price
-
-=> link_to 'Edit', edit_product_path(@product)
-'|
-=< link_to 'Back', products_path
+.container.mt-5
+  .row.justify-content-md-center
+    .col-md-8.border.authenticate-border.p-5
+      .card
+        h5.card-header
+          | Product Detail
+        .card-body
+          p.card-text
+            = @product.data_memory_model.model.manufacturer.name
+          p.card-text
+            = @product.data_memory_model.model.name
+          p.card-text
+            = @product.data_memory_model.data_memory.name
+          p.card-text
+            = @product.price
+          = link_to "Back", products_path, class: "btn btn-primary"

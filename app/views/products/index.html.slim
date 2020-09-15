@@ -1,25 +1,34 @@
-h1 Listing products
+.container
+  .row
+    .col-12
+      .card
+        .card-body
+          .table-header.d-flex.justify-content-between
+            h4.header-title
+              | All products
+            .header-new-user
+              = link_to "New product", new_product_path, class: "btn btn-primary"
 
-table
-  thead
-    tr
-      th User
-      th Data memory model
-      th Price
-      th
-      th
-      th
-
-  tbody
-    - @products.each do |product|
-      tr
-        td = product.user
-        td = product.data_memory_model
-        td = product.price
-        td = link_to 'Show', product
-        td = link_to 'Edit', edit_product_path(product)
-        td = link_to 'Destroy', product, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Product', new_product_path
+          table.basic-datatable.table.dt-responsive
+            thead
+              tr
+                th Manufacturer
+                th Models
+                th Data Memory
+                th Price
+                th Actions
+            tbody
+              - @products.each do |product|
+                tr
+                  td
+                    = product.data_memory_model.model.manufacturer.name
+                  td
+                    = product.data_memory_model.model.name
+                  td
+                    = product.data_memory_model.data_memory.name
+                  td
+                    = product.price
+                  td.table-action
+                    = link_to 'Show', product_path(product), class: "btn btn-info mr-3"
+                    = link_to 'Edit', edit_product_path(product), class: "btn btn-primary mr-3"
+                    = link_to "Destroy", product_path(product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
