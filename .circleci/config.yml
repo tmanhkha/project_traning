@@ -6,12 +6,15 @@
       - image: circleci/ruby:2.7.1-node-browsers
         environment:
           RAILS_ENV: test
+          DB_HOST: 127.0.0.1
+          DB_USERNAME: 'root'
       - image: circleci/mysql:8.0.21
+        command: [--default-authentication-plugin=mysql_native_password]
         environment:
-          command: [--default-authentication-plugin=mysql_native_password]
-          environment:
-            MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-            MYSQL_ROOT_HOST: '%'
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          MYSQL_ROOT_HOST: '%'
+          MYSQL_DATABASE: project_traning_test
+          DB_USERNAME: root
   jobs:
     build:
       <<: *defaults
@@ -21,7 +24,7 @@
         # Restore Cached Dependencies
         - type: cache-restore
           name: Restore bundle cache
-          key: your-app-name-{{ checksum "Gemfile.lock" }}
+          key: api-{{ checksum "Gemfile.lock" }}
 
         # Bundle install dependencies
         - run: bundle install --path vendor/bundle
@@ -29,7 +32,7 @@
         # Cache Dependencies
         - type: cache-save
           name: Store bundle cache
-          key: your-app-name-{{ checksum "Gemfile.lock" }}
+          key: api-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
