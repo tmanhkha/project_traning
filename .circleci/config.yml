@@ -1,0 +1,33 @@
+version: 2.1
+defaults: &defaults
+  working_directory: ~/app
+  docker:
+    - image: circleci/ruby:2.7.1-node-browsers
+      environment:
+        RAILS_ENV: test
+    - image: circleci/mysql:8.0.21
+      environment:
+        command: [--default-authentication-plugin=mysql_native_password]
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          MYSQL_ROOT_HOST: '%'
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+
+      # Bundle install dependencies
+      - run: bundle install
+
+      # Wait for DB
+      - run: dockerize -wait tcp://localhost:3306 -timeout 1m
+
+      # Setup the database
+      - run: bundle exec rails db:create
+      - run: bundle exec rails db:migrate
+      - run: bundle exec yarn install
+
+      # Run the tests
+      - run: bundle exec rspec
+      - run: bundle exec rubocop
