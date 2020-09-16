@@ -7,6 +7,19 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-5
       li.nav-item.active
         a.nav-link[href="#"]
           | Home
+      - if user_signed_in? && policy(:product).new?
+        li.nav-item.dropdown
+          a#navbarDropdown.nav-link.dropdown-toggle[href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+            |  Admin
+          .dropdown-menu[aria-labelledby="navbarDropdown"]
+            = link_to manufacturers_path, class: "dropdown-item" do
+              | Manufacturer
+            = link_to models_path, class: "dropdown-item" do
+              | Models
+            = link_to data_memories_path, class: "dropdown-item" do
+              | Data memories
+            = link_to root_path, class: "dropdown-item" do
+              | Products
       li.nav-item
         a.nav-link[href="#"]
           | Your products
@@ -17,4 +30,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-5
         a.nav-link[href="#"]
           | Samsung
     .form-inline.my-2.my-lg-0
-      = link_to "Sign In", new_user_session_path, class: 'btn btn-success mr-3'
+      - if user_signed_in?
+        = link_to "Log out", destroy_user_session_path, class: 'btn btn-success mr-3', method: :delete
+      - else
+        = link_to "Sign In", new_user_session_path, class: 'btn btn-success mr-3'

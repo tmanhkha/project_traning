@@ -58,7 +58,7 @@ class DataMemoriesController < ApplicationController
   end
 
   def data_memory_params
-    params.require(:data_memory).permit(:name)
+    params.require(:data_memory).permit(:size)
   end
 
   def authorize_data_memory

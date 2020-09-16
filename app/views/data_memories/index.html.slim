@@ -14,13 +14,13 @@
           table.basic-datatable.table.dt-responsive
             thead
               tr
-                th Name
+                th Size
                 th Actions
             tbody
               - @data_memories.each do |data_memory|
                 tr
                   td
-                    = data_memory.name
+                    = data_memory.size
                   td.table-action
                     = link_to 'Show', data_memory_path(data_memory), class: "btn btn-info mr-3"
                     = link_to 'Edit', edit_data_memory_path(data_memory), class: "btn btn-primary mr-3"

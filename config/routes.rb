@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   resources :manufacturers
   devise_for :users
   root 'products#index'
-  resources :users
+  resources :users, except: :show
   resources :models
 end

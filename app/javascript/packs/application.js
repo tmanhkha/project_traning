@@ -29,7 +29,6 @@ require("daterangepicker");
 require("metismenu");
 require("select2");
 require("@nathanvda/cocoon")
-require("js/app.min");
 require("js/jquery.dataTables");
 require("js/datatable");
 

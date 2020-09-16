@@ -15,6 +15,6 @@ class Product < ApplicationRecord
   end
 
   def data_memory_of_product
-    data_memory_model&.data_memory&.name
+    data_memory_model&.data_memory&.size
   end
 end

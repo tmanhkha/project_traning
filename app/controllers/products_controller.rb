@@ -25,12 +25,12 @@ class ProductsController < ApplicationController
   end
 
   def create
-    product_service = ProductService.new(params)
-    product_service.execute
+    get_dmm_service = GetDataMemoryModelService.new(params)
+    get_dmm_service.execute
 
-    return redirect_to new_product_path, alert: product_service.errors.join(', ') unless product_service.errors.empty?
+    return redirect_to new_product_path, alert: get_dmm_service.errors.join(', ') unless get_dmm_service.errors.empty?
 
-    @product = current_user.products.new(product_params.merge(data_memory_model_id: product_service.data_memory_model.id))
+    @product = current_user.products.new(product_params.merge(data_memory_model_id: get_dmm_service.data_memory_model.id))
 
     respond_to do |format|
       if @product.save
@@ -44,13 +44,13 @@ class ProductsController < ApplicationController
   end
 
   def update
-    product_service = ProductService.new(params)
-    product_service.execute
+    get_dmm_service = GetDataMemoryModelService.new(params)
+    get_dmm_service.execute
 
-    return redirect_to edit_product_path(@product), alert: product_service.errors.join(', ') unless product_service.errors.empty?
+    return redirect_to edit_product_path(@product), alert: get_dmm_service.errors.join(', ') unless get_dmm_service.errors.empty?
 
     respond_to do |format|
-      if @product.update(product_params.merge(data_memory_model_id: product_service.data_memory_model.id))
+      if @product.update(product_params.merge(data_memory_model_id: get_dmm_service.data_memory_model.id))
         format.html { redirect_to products_path, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
@@ -84,7 +84,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @data_memories.map { |data_memory| { id: data_memory.id, text: data_memory.name } } }
+      format.json { render json: @data_memories.map { |data_memory| { id: data_memory.id, text: data_memory.size } } }
     end
   end
 

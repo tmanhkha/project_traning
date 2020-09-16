@@ -19,6 +19,8 @@ RSpec.describe ProductPolicy, type: :policy do
     it { is_expected.to permit_action(:update) }
     it { is_expected.to permit_action(:edit) }
     it { is_expected.to permit_action(:destroy) }
+    it { is_expected.to permit_action(:models_of_manufacturer) }
+    it { is_expected.to permit_action(:data_memories_of_model) }
   end
 
   context 'is manager' do
@@ -30,6 +32,8 @@ RSpec.describe ProductPolicy, type: :policy do
     it { is_expected.to permit_action(:update) }
     it { is_expected.to permit_action(:edit) }
     it { is_expected.to permit_action(:destroy) }
+    it { is_expected.to permit_action(:models_of_manufacturer) }
+    it { is_expected.to permit_action(:data_memories_of_model) }
   end
 
   context 'is guest' do
@@ -42,5 +46,7 @@ RSpec.describe ProductPolicy, type: :policy do
     it { is_expected.to forbid_action(:update) }
     it { is_expected.to forbid_action(:edit) }
     it { is_expected.to forbid_action(:destroy) }
+    it { is_expected.to forbid_action(:models_of_manufacturer) }
+    it { is_expected.to forbid_action(:data_memories_of_model) }
   end
 end

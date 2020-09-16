@@ -1,6 +1,6 @@
 # frozen_string_literal: false
 
-class ProductService
+class GetDataMemoryModelService
   attr_accessor :errors, :data_memory_model, :params
 
   def initialize(params)
@@ -22,6 +22,6 @@ class ProductService
   def find_data_memory_model
     @data_memory_model = DataMemoryModel.find_by(model_id: params[:model_id], data_memory_id: params[:data_memory_id])
 
-    errors.push('Wrong something!') if data_memory_model.blank?
+    errors.push('Something went wrong!') if @data_memory_model.blank?
   end
 end

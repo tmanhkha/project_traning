@@ -20,7 +20,7 @@
   .form-group
     = f.label "Data Memory"
     br
-    = select_tag :data_memory_id, options_from_collection_for_select(@data_memories, 'id', 'name', @product.data_memory_model&.data_memory&.id), { class: "form-control select2-data-memories", id: "product-select-data-memory", include_blank: true }
+    = select_tag :data_memory_id, options_from_collection_for_select(@data_memories, 'id', 'size', @product.data_memory_model&.data_memory&.id), { class: "form-control select2-data-memories", id: "product-select-data-memory", include_blank: true }
   .form-group
     = f.label "Price"
     br

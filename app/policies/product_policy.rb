@@ -41,6 +41,14 @@ class ProductPolicy < ApplicationPolicy
     admin_or_manager_allowed
   end
 
+  def models_of_manufacturer?
+    admin_or_manager_allowed
+  end
+
+  def data_memories_of_model?
+    admin_or_manager_allowed
+  end
+
   private
 
   def admin_or_manager_allowed
