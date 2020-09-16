@@ -18,8 +18,23 @@
       steps:
         - checkout
 
+        # Restore Cached Dependencies
+        - type: cache-restore
+          name: Restore bundle cache
+          key: your-app-name-{{ checksum "Gemfile.lock" }}
+
         # Bundle install dependencies
-        - run: bundle install
+        - run: bundle install --path vendor/bundle
+
+        # Cache Dependencies
+        - type: cache-save
+          name: Store bundle cache
+          key: your-app-name-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+        # Bundle install dependencies
+        - run: bundle install --path vendor/bundle
 
         # Wait for DB
         - run: dockerize -wait tcp://localhost:3306 -timeout 1m
