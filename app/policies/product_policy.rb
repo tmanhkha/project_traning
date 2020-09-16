@@ -1,22 +1,31 @@
 # frozen_string_literal: false
 
-class ModelPolicy < ApplicationPolicy
+class ProductPolicy < ApplicationPolicy
+  attr_reader :user, :product
   class Scope < Scope
     def resolve
       scope.all
     end
   end
 
-  def initialize(user, model)
+  def initialize(user, product)
     @user = user
-    @model = model
+    @product = product
   end
 
   def index?
-    admin_or_manager_allowed
+    true
   end
 
   def show?
+    true
+  end
+
+  def create?
+    admin_or_manager_allowed
+  end
+
+  def new?
     admin_or_manager_allowed
   end
 

@@ -1,6 +1,8 @@
+# frozen_string_literal: false
+
 class ModelsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_model, only: [:show, :edit, :update, :destroy]
+  before_action :set_model, only: %i[show edit update destroy]
   before_action :authorize_model
 
   def index
@@ -8,12 +10,9 @@ class ModelsController < ApplicationController
     @models = Model.all
   end
 
+  def show; end
 
-  def show
-  end
-
-  def edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|

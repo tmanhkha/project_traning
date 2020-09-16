@@ -1,21 +1,21 @@
+# frozen_string_literal: false
+
 class DataMemoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_data_memory, only: [:show, :edit, :update, :destroy]
+  before_action :set_data_memory, only: %i[show edit update destroy]
   before_action :authorize_data_memory
 
   def index
     @data_memories = DataMemory.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @data_memory = DataMemory.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @data_memory = DataMemory.new(data_memory_params)

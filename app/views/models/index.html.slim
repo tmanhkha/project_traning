@@ -19,7 +19,7 @@
                   td
                     = model.name
                   td
-                    = @model_presenter.render_data_memory_label(model)
+                    = raw @model_presenter.render_data_memory_label(model)
                   td.table-action
                     = link_to 'Show', model_path(model), class: "btn btn-info mr-3"
                     = link_to 'Add Data Memories', edit_model_path(model), class: "btn btn-primary mr-3"

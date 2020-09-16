@@ -1,3 +1,5 @@
+# frozen_string_literal: false
+
 class DataMemoryPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve

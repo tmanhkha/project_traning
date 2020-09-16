@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(document).on("ready turbolinks:load", () => {
   $("#product-select-manufacturer").select2({ placeholder: "Please select manufacturer" });
 
   $("#product-select-manufacturer").on('change', (event) => {
@@ -15,6 +15,7 @@ $(document).ready(() => {
       success: function(data, textStatus, jqXHR) {
         if (data) {
           $("#product-select-model").empty();
+          $("#product-select-data-memory").empty();
           $("#product-select-model").prepend('<option selected=""></option>').select2({ data: data, placeholder: "Please select a model" });
         }
       },

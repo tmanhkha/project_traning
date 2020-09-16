@@ -6,8 +6,9 @@
           .table-header.d-flex.justify-content-between
             h4.header-title
               | All products
-            .header-new-user
-              = link_to "New product", new_product_path, class: "btn btn-primary"
+            - if policy(:product).new?
+              .header-new-user
+                = link_to "New product", new_product_path, class: "btn btn-primary"
 
           table.basic-datatable.table.dt-responsive
             thead
@@ -21,14 +22,15 @@
               - @products.each do |product|
                 tr
                   td
-                    = product.data_memory_model.model.manufacturer.name
+                    = product.manufacture_of_product
                   td
-                    = product.data_memory_model.model.name
+                    = product.model_of_product
                   td
-                    = product.data_memory_model.data_memory.name
+                    = product.data_memory_of_product
                   td
                     = product.price
                   td.table-action
                     = link_to 'Show', product_path(product), class: "btn btn-info mr-3"
-                    = link_to 'Edit', edit_product_path(product), class: "btn btn-primary mr-3"
-                    = link_to "Destroy", product_path(product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+                    - if policy(:product).new?
+                      = link_to 'Edit', edit_product_path(product), class: "btn btn-primary mr-3"
+                      = link_to "Destroy", product_path(product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"

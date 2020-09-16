@@ -1,26 +1,36 @@
+# frozen_string_literal: false
+
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_product, only: %i[show edit update destroy]
+  before_action :authorize_product
 
   def index
     @products = Product.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @product = current_user.products.new
+    @manufacturers = Manufacturer.all
+    @models = Model.none
+    @data_memories = DataMemory.none
   end
 
   def edit
+    @manufacturers = Manufacturer.all
+    @models = @product.data_memory_model.model.manufacturer.models
+    @data_memories = @product.data_memory_model.model.data_memories
   end
 
   def create
-    data_memory_model = DataMemoryModel.find_by(model_id: params[:model_id], data_memory_id: params[:data_memory_id])
-    return redirect_to new_product_path, alert: "Wrong something!" unless data_memory_model.present?
+    product_service = ProductService.new(params)
+    product_service.execute
 
-    @product = current_user.products.new(product_params.merge(data_memory_model_id: data_memory_model.id))
+    return redirect_to new_product_path, alert: product_service.errors.join(', ') unless product_service.errors.empty?
 
+    @product = current_user.products.new(product_params.merge(data_memory_model_id: product_service.data_memory_model.id))
 
     respond_to do |format|
       if @product.save
@@ -34,8 +44,13 @@ class ProductsController < ApplicationController
   end
 
   def update
+    product_service = ProductService.new(params)
+    product_service.execute
+
+    return redirect_to edit_product_path(@product), alert: product_service.errors.join(', ') unless product_service.errors.empty?
+
     respond_to do |format|
-      if @product.update(product_params)
+      if @product.update(product_params.merge(data_memory_model_id: product_service.data_memory_model.id))
         format.html { redirect_to products_path, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
@@ -81,5 +96,9 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:data_memory_model_id, :price)
+  end
+
+  def authorize_product
+    authorize Product
   end
 end

@@ -29,16 +29,14 @@ require("daterangepicker");
 require("metismenu");
 require("select2");
 require("@nathanvda/cocoon")
+require("js/app.min");
+require("js/jquery.dataTables");
+require("js/datatable");
 
 import "css/icons.min.css";
 import "css/app.min.css";
 import "css/dataTables.bootstrap4.scss";
 
-document.addEventListener("turbolinks:load", () => {
-  require("js/app.min");
-  require("js/jquery.dataTables");
-  require("js/datatable");
-});
 
 $(document).on("ready turbolinks:load", () => {
   $(".select2-data-memories").select2()

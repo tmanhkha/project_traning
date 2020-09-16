@@ -15,5 +15,5 @@
   .form-group
     = f.label "Data Memories"
     br
-    = f.select :data_memory_ids, options_from_collection_for_select(DataMemory.all, 'id', 'name'), { prompt: "Select manufacturer" }, { include_blank: true, class: "form-control select2-data-memories", multiple: true }
+    = f.select :data_memory_ids, options_from_collection_for_select(DataMemory.all, 'id', 'name', @model.data_memory_ids), { prompt: "Select manufacturer" }, { include_blank: true, class: "form-control select2-data-memories", multiple: true }
   = f.submit "Submit", class: "btn btn-primary"
