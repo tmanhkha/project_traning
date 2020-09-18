@@ -1,0 +1,69 @@
+---
+  version: 2
+  defaults: &defaults
+    working_directory: ~/app
+    docker:
+      - image: circleci/ruby:2.7.1-node-browsers
+        environment:
+          RAILS_ENV: test
+          DB_HOST: 127.0.0.1
+          DB_USERNAME: 'root'
+      - image: circleci/mysql:8.0.21
+        command: [--default-authentication-plugin=mysql_native_password]
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          MYSQL_ROOT_HOST: '%'
+          MYSQL_DATABASE: project_traning_test
+          DB_USERNAME: root
+  jobs:
+    build:
+      <<: *defaults
+      steps:
+        - checkout
+
+        # Restore Cached Dependencies
+        - type: cache-restore
+          name: Restore bundle cache
+          keys:
+           - vender-bundle-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+           - vender-bundle-v1-{{ arch }}-{{ .Branch }}-
+           - vender-bundle-v1-{{ arch }}
+
+        # Bundle install dependencies
+        - run: bundle install --path vendor/bundle
+
+        # Bundle Cache Dependencies
+        - type: cache-save
+          name: Store bundle cache
+          key: vender-bundle-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+        # Restore Yarn Dependencies
+        - type: cache-restore
+          name: Restore yarn cache
+          keys:
+            - yarn-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-cache-v1-{{ arch }}-{{ .Branch }}-
+            - yarn-cache-v1-{{ arch }}-
+
+        # Yarn install dependencies
+        - run: bundle exec yarn install
+
+        # Yarn Cache Dependencies
+        - type: cache-save
+          name: Store yarn cache
+          key: yarn-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+        # Wait for DB
+        - run: dockerize -wait tcp://localhost:3306 -timeout 1m
+
+        # Setup the database
+        - run: bundle exec rails db:create
+        - run: bundle exec rails db:migrate
+
+        # Run the tests
+        - run: bundle exec rspec
+        - run: bundle exec rubocop
