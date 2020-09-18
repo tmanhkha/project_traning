@@ -1,0 +1,24 @@
+.container.mt-5
+  .row.justify-content-md-center
+    .col-md-8.border.authenticate-border.p-5
+      .card
+        h5.card-header
+          | Product Detail
+        .card-body
+          p.card-text
+            span.font-weight-bold
+              | Manufacturer: &nbsp;&nbsp;
+            = @product.data_memory_model.model.manufacturer.name
+          p.card-text
+            span.font-weight-bold
+              | Model: &nbsp;&nbsp;
+            = @product.data_memory_model.model.name
+          p.card-text
+            span.font-weight-bold
+              | Data memory: &nbsp;&nbsp;
+            = @product.data_memory_of_product
+          p.card-text
+            span.font-weight-bold
+              | Price: &nbsp;&nbsp;
+            = @product.price
+          = link_to "Back", products_path, class: "btn btn-primary"

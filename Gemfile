@@ -25,6 +25,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate'
   gem 'listen', '~> 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -38,6 +39,7 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'cocoon'
 gem 'devise', '~> 4.7', '>= 4.7.2'
 gem 'pundit'
 gem 'rubocop-rails'

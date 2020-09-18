@@ -1,5 +1,4 @@
-$(document).ready(function () {
-  "use strict";
+$(document).on("ready turbolinks:load", function () {
   $(".basic-datatable").DataTable({
     keys: !0,
     responsive: true,

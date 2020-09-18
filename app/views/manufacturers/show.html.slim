@@ -1,0 +1,16 @@
+.container.mt-5
+  .row.justify-content-md-center
+    .col-md-8.border.authenticate-border.p-5
+      .card
+        h5.card-header
+          | Manufacturer Detail
+        .card-body
+          p.card-text
+            span.font-weight-bold
+              | Name: &nbsp;&nbsp;
+            = @manufacturer.name
+          p.card-text
+            span.font-weight-bold
+              | Models: &nbsp;&nbsp;
+            = @manufacturer_presenter.manufacturer_models
+          = link_to "Back", manufacturers_path, class: "btn btn-primary"
