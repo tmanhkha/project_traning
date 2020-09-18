@@ -1,5 +1,26 @@
 # frozen_string_literal: false
 
+# == Schema Information
+#
+# Table name: products
+#
+#  id                   :bigint           not null, primary key
+#  price                :decimal(10, )
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  data_memory_model_id :bigint           not null
+#  user_id              :bigint           not null
+#
+# Indexes
+#
+#  index_products_on_data_memory_model_id  (data_memory_model_id)
+#  index_products_on_user_id               (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (data_memory_model_id => data_memory_models.id)
+#  fk_rails_...  (user_id => users.id)
+#
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
@@ -30,7 +51,7 @@ RSpec.describe Product, type: :model do
     end
 
     it 'data_memory_of_product' do
-      expect(product.data_memory_of_product).to eq(64)
+      expect(product.data_memory_of_product).to eq('64 G')
     end
   end
 end

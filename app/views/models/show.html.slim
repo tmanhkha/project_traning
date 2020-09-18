@@ -6,5 +6,11 @@
           | Model Detail
         .card-body
           p.card-text
+            span.font-weight-bold
+              | Name: &nbsp;&nbsp;
             = @model.name
+          p.card-text
+            span.font-weight-bold
+              | Data memories: &nbsp;&nbsp;
+            = "#{@model.data_memories.pluck(:size).join(", ")} (G)"
           = link_to "Back", models_path, class: "btn btn-primary"

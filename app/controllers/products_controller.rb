@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   before_action :authorize_product
 
   def index
-    @products = Product.all
+    @products = Product.all.order(created_at: :desc)
   end
 
   def show; end
@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
   def edit
     @manufacturers = Manufacturer.all
     @models = @product.data_memory_model.model.manufacturer.models
-    @data_memories = @product.data_memory_model.model.data_memories
+    @data_memories = @product.data_memory_model.model.data_memories.order(size: :asc)
   end
 
   def create
@@ -80,7 +80,7 @@ class ProductsController < ApplicationController
 
   def data_memories_of_model
     @model = Model.find(params[:model_id])
-    @data_memories = @model.data_memories
+    @data_memories = @model.data_memories.order(size: :asc)
 
     respond_to do |format|
       format.html

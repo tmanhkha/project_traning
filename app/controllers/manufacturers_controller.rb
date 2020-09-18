@@ -6,7 +6,7 @@ class ManufacturersController < ApplicationController
   before_action :authorize_manufacturer
 
   def index
-    @manufacturers = Manufacturer.all
+    @manufacturers = Manufacturer.all.order(created_at: :desc)
   end
 
   def show

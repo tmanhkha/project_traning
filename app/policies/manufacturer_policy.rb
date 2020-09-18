@@ -1,12 +1,6 @@
 # frozen_string_literal: false
 
 class ManufacturerPolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
-  end
-
   def initialize(user, manufacturer)
     @user = user
     @manufacturer = manufacturer
@@ -17,27 +11,27 @@ class ManufacturerPolicy < ApplicationPolicy
   end
 
   def show?
-    admin_or_manager_allowed
+    index?
   end
 
   def create?
-    admin_or_manager_allowed
+    index?
   end
 
   def new?
-    admin_or_manager_allowed
+    index?
   end
 
   def update?
-    admin_or_manager_allowed
+    index?
   end
 
   def edit?
-    admin_or_manager_allowed
+    index?
   end
 
   def destroy?
-    admin_or_manager_allowed
+    index?
   end
 
   private

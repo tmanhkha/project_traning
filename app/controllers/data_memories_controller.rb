@@ -6,7 +6,7 @@ class DataMemoriesController < ApplicationController
   before_action :authorize_data_memory
 
   def index
-    @data_memories = DataMemory.all
+    @data_memories = DataMemory.all.order(size: :asc)
   end
 
   def show; end

@@ -10,7 +10,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-5
       - if user_signed_in? && policy(:product).new?
         li.nav-item.dropdown
           a#navbarDropdown.nav-link.dropdown-toggle[href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
-            |  Admin
+            = current_user.role.name
           .dropdown-menu[aria-labelledby="navbarDropdown"]
             = link_to manufacturers_path, class: "dropdown-item" do
               | Manufacturer

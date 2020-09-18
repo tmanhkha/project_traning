@@ -7,7 +7,7 @@ class ModelsController < ApplicationController
 
   def index
     setup_presenter
-    @models = Model.all
+    @models = Model.all.order(created_at: :desc)
   end
 
   def show; end

@@ -1,13 +1,6 @@
 # frozen_string_literal: false
 
 class ProductPolicy < ApplicationPolicy
-  attr_reader :user, :product
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
-  end
-
   def initialize(user, product)
     @user = user
     @product = product
@@ -26,27 +19,27 @@ class ProductPolicy < ApplicationPolicy
   end
 
   def new?
-    admin_or_manager_allowed
+    create?
   end
 
   def update?
-    admin_or_manager_allowed
+    create?
   end
 
   def edit?
-    admin_or_manager_allowed
+    create?
   end
 
   def destroy?
-    admin_or_manager_allowed
+    create?
   end
 
   def models_of_manufacturer?
-    admin_or_manager_allowed
+    create?
   end
 
   def data_memories_of_model?
-    admin_or_manager_allowed
+    create?
   end
 
   private

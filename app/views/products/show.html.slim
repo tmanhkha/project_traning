@@ -6,11 +6,19 @@
           | Product Detail
         .card-body
           p.card-text
+            span.font-weight-bold
+              | Manufacturer: &nbsp;&nbsp;
             = @product.data_memory_model.model.manufacturer.name
           p.card-text
+            span.font-weight-bold
+              | Model: &nbsp;&nbsp;
             = @product.data_memory_model.model.name
           p.card-text
-            = @product.data_memory_model.data_memory.size
+            span.font-weight-bold
+              | Data memory: &nbsp;&nbsp;
+            = @product.data_memory_of_product
           p.card-text
+            span.font-weight-bold
+              | Price: &nbsp;&nbsp;
             = @product.price
           = link_to "Back", products_path, class: "btn btn-primary"

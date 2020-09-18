@@ -1,5 +1,15 @@
 # frozen_string_literal: false
 
+# == Schema Information
+#
+# Table name: roles
+#
+#  id         :bigint           not null, primary key
+#  level      :integer
+#  name       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 FactoryBot.define do
   factory :role do
     name { 'role' }

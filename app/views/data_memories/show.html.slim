@@ -6,5 +6,7 @@
           | Data Memory Detail
         .card-body
           p.card-text
+            span.font-weight-bold
+              | Size: &nbsp;&nbsp;
             = @data_memory.size
           = link_to "Back", data_memories_path, class: "btn btn-primary"

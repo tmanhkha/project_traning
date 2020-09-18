@@ -1,12 +1,6 @@
 # frozen_string_literal: false
 
 class DataMemoryPolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
-  end
-
   def initialize(user, data_memory)
     @user = user
     @data_memory = data_memory
@@ -17,27 +11,27 @@ class DataMemoryPolicy < ApplicationPolicy
   end
 
   def show?
-    admin_or_manager_allowed
+    index?
   end
 
   def create?
-    admin_or_manager_allowed
+    index?
   end
 
   def new?
-    admin_or_manager_allowed
+    index?
   end
 
   def update?
-    admin_or_manager_allowed
+    index?
   end
 
   def edit?
-    admin_or_manager_allowed
+    index?
   end
 
   def destroy?
-    admin_or_manager_allowed
+    index?
   end
 
   private
