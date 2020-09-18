@@ -1,0 +1,27 @@
+= render "share/turn_off_turbolinks"
+
+.container
+  .row
+    .col-12
+      .card
+        .card-body
+          .table-header.d-flex.justify-content-between
+            h4.header-title
+              | All data memories
+            .header-new-user
+              = link_to "New data memory", new_data_memory_path, class: "btn btn-primary"
+
+          table.basic-datatable.table.dt-responsive
+            thead
+              tr
+                th Size
+                th Actions
+            tbody
+              - @data_memories.each do |data_memory|
+                tr
+                  td
+                    = data_memory.size
+                  td.table-action
+                    = link_to 'Show', data_memory_path(data_memory), class: "btn btn-info mr-3"
+                    = link_to 'Edit', edit_data_memory_path(data_memory), class: "btn btn-primary mr-3"
+                    = link_to "Destroy", data_memory_path(data_memory), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"

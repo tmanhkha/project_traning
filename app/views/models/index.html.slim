@@ -1,0 +1,28 @@
+= render "share/turn_off_turbolinks"
+
+.container
+  .row
+    .col-12
+      .card
+        .card-body
+          .table-header.d-flex.justify-content-between
+            h4.header-title
+              | All models
+
+          table.basic-datatable.table.dt-responsive
+            thead
+              tr
+                th Name
+                th Data Memories
+                th Actions
+            tbody
+              - @models.each do |model|
+                tr
+                  td
+                    = model.name
+                  td
+                    = raw @model_presenter.render_data_memory_label(model)
+                  td.table-action
+                    = link_to 'Show', model_path(model), class: "btn btn-info mr-3"
+                    = link_to 'Add Data Memories', edit_model_path(model), class: "btn btn-primary mr-3"
+                    = link_to "Destroy", model_path(model), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"

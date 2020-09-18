@@ -1,0 +1,30 @@
+= render "share/turn_off_turbolinks"
+
+.container
+  .row
+    .col-12
+      .card
+        .card-body
+          .table-header.d-flex.justify-content-between
+            h4.header-title
+              | All manufacturers
+            .header-new-user
+              = link_to "New manufacturer", new_manufacturer_path, class: "btn btn-primary"
+
+          table.basic-datatable.table.dt-responsive
+            thead
+              tr
+                th Name
+                th Models
+                th Actions
+            tbody
+              - @manufacturers.each do |manufacturer|
+                tr
+                  td
+                    = manufacturer.name
+                  td
+                    = manufacturer.models.pluck(:name).join(', ')
+                  td.table-action
+                    = link_to 'Show', manufacturer_path(manufacturer), class: "btn btn-info mr-3"
+                    = link_to 'Edit', edit_manufacturer_path(manufacturer), class: "btn btn-primary mr-3"
+                    = link_to "Destroy", manufacturer_path(manufacturer), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"

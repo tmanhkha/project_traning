@@ -3,12 +3,6 @@
 class AlertPresenter < BasePresenter
   attr_accessor :alert, :notice
 
-  def initialize(args = {})
-    args.each do |attr, value|
-      public_send("#{attr}=", value)
-    end
-  end
-
   def render_header_message
     show_alert_or_notice_if_present
   end

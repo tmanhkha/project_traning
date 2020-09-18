@@ -1,12 +1,6 @@
 # frozen_string_literal: false
 
 class UserPolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
-  end
-
   def initialize(user, account)
     @user = user
     @account = account
@@ -17,23 +11,23 @@ class UserPolicy < ApplicationPolicy
   end
 
   def create?
-    only_admin_allowed
+    index?
   end
 
   def new?
-    only_admin_allowed
+    index?
   end
 
   def update?
-    only_admin_allowed
+    index?
   end
 
   def edit?
-    only_admin_allowed
+    index?
   end
 
   def destroy?
-    only_admin_allowed
+    index?
   end
 
   private

@@ -1,0 +1,15 @@
+= form_for(@data_memory) do |f|
+  - if @data_memory.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@data_memory.errors.count, "error")
+        |  prohibited this role from being saved:
+      ul
+        - @data_memory.errors.full_messages.each do |message|
+          li
+            = message
+  .form-group
+    = f.label :size
+    br
+    = f.text_field :size, class: "form-control"
+  = f.submit class: "btn btn-primary"

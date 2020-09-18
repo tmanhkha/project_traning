@@ -1,0 +1,12 @@
+.container.mt-5
+  .row.justify-content-md-center
+    .col-md-8.border.authenticate-border.p-5
+      .card
+        h5.card-header
+          | Data Memory Detail
+        .card-body
+          p.card-text
+            span.font-weight-bold
+              | Size: &nbsp;&nbsp;
+            = @data_memory.size
+          = link_to "Back", data_memories_path, class: "btn btn-primary"

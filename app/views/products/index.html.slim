@@ -1,0 +1,38 @@
+= render "share/turn_off_turbolinks"
+
+.container
+  .row
+    .col-12
+      .card
+        .card-body
+          .table-header.d-flex.justify-content-between
+            h4.header-title
+              | All products
+            - if policy(:product).new?
+              .header-new-user
+                = link_to "New product", new_product_path, class: "btn btn-primary"
+
+          table.basic-datatable.table.dt-responsive
+            thead
+              tr
+                th Manufacturer
+                th Models
+                th Data Memory
+                th Price
+                th Actions
+            tbody
+              - @products.each do |product|
+                tr
+                  td
+                    = product.manufacture_of_product
+                  td
+                    = product.model_of_product
+                  td
+                    = product.data_memory_of_product
+                  td
+                    = product.price
+                  td.table-action
+                    = link_to 'Show', product_path(product), class: "btn btn-info mr-3"
+                    - if policy(:product).new?
+                      = link_to 'Edit', edit_product_path(product), class: "btn btn-primary mr-3"
+                      = link_to "Destroy", product_path(product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
